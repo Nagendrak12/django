@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+<meta name=”viewport” content=”width=device-width, initial-scale=1.0">
+    <title>The Notes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css'%}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+       <script>
+             $(document).ready(function () {
+                    $("button").click(function () {
+                        $("p").text("Search Result Matched Books are:");
+                    });
+                });
+        function search() {
+            if (searchstring.value.length == 0) {
+                return alert("Put some text in there!");
+            };
+            // Ajax request
+            $.get("/search_note/",                        // URL
+                { "desc": $("#searchstring").val() }  // Data
+                , showResults);                       // callback
+        }
+        function showResults(results) {
+            console.log(results)
+            entries = "";
+            for (i = 0; i < results.length; i++) {
+                entries = entries + "<li><a href='/edit/" + results[i].id + "'>" + results[i].title + "</a>" + "</li>";
+            }
+            $("#entries").html(entries);
+        }
+
+    </script>
+
+</head>
+<body>
+   
+<div class="container-fluid container-responsive-md bg-primary text-white">The Notes<img src="{% static "1.png" %}" width=" 30" height="40" alt=" Notes">  
+<div class="toggle">
+    <i class="text-light text-decoration-underline">Welcome,{{request.user.username}}</i>
+    <i class="far fa-user-circle " style="font-size: 2em;
+                                    color: white;"></i>
+   
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.toggle').click(function () {
+            $('.toggle').toggleClass('active')
+            $('.overlay').toggleClass('active')
+            $('.menu').toggleClass('active')
+        })
+    })
+
+</script>
+</div>
+<div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home/">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/list/" >List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add/">Add Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/recent/">Recently Added</a>
+                </li>
+                
+            </ul><span class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchstring" value="{{searchstring}}">
+                <button class="btn btn-outline-success" onclick="search()">Search</button>
+            </span>
+            
+            </div>
+    </div>
+</nav>
+
+</div>
+<div class="overlay"></div>
+<div class="menu">
+
+    <ul>
+        <li>
+            
+            <a href="/changepwd/"><i class="fas fa-lock-open" style="font-size: 1.5rem;color: white;">&nbsp</i>Change password</a>
+        </li>
+        <li>
+        <a href="/logout/"><i class="fas fa-sign-out-alt" style="font-size: 1.5rem;color: white;">&nbsp</i>Logout</a>
+        </li>
+      
+
+    </ul>
+
+</div>
+
+
+{% block body %}
+{% endblock %}
+<h3>
+    <p></p>
+</h3>
+<ul id="entries" class="container-fluid data-toggle="tooltip" data-placement="top" title="You can update by click">
+</ul>
+</body>
+</html>

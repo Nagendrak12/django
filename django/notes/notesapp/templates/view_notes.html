@@ -1,0 +1,31 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<h2 class="container-fluid">List of Notes</h2>
+
+<table class="table table-responsive-lg table-bordered container " width="100%">
+    <tr class="table-dark ">
+      <th>Title</th>
+        <th class="text-center">Text of the Notes</th>
+        <th>Added On</th>
+        <th>Updated On</th>
+        <th>Update/Delete</th>
+    </tr>
+
+    {% for exp in mynotes %}
+    <tr class="text-center">
+        <td>{{exp.title}}</td>
+        <td>{{exp.text_of_the_note}}</td>
+        <td class="col-1">{{exp.added_on|date:'d-m-Y'}}</td>
+        <td class="col-1">{{exp.updated_on|date:'d-m-Y'}}</td>
+        <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn bg-success" href="/edit/{{exp.id}}">Edit</a>
+            <a class="btn bg-danger" onclick="return confirm('Do you want to delete this entry?')" href="/delete/{{exp.id}}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

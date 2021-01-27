@@ -1,0 +1,16 @@
+.banner {
+  background-color:blue;
+  color:white;
+  font-family : calibri;
+  font-size:20pt;
+  font-weight:bold;
+  letter-spacing:5pt;
+}
+.card {
+  width: 21rem; 
+  height: 37rem; 
+  margin-top:260px;
+}
+.border {
+  border-radius: 10px;
+}

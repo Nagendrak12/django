@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'registerstyles.css'%}" />
+<div class="banner">Book Store
+    <button onclick="window.location.href='/bookstore/login/'" style="float: right;">Login</button>
+</div>
+
+<h2>User Registration</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Register" />
+</form>
+<p></p>
+

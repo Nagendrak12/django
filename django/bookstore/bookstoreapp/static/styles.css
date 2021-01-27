@@ -1,0 +1,69 @@
+body {
+ font-family: calibri;
+ font-size: 12pt;
+}
+
+.colhead {
+  background-color:black;
+  color:white;
+}
+
+.banner {
+  background-color:blue;
+  color:white;
+  font-family : calibri;
+  font-size:20pt;
+  font-weight:bold;
+  letter-spacing:5pt;
+}
+
+
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.menu li {
+  float: left;
+}
+
+.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.menu li a:hover {
+  background-color: #111;
+}
+
+.menu button {
+  background-color: #1ec1f3; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.menu input[type=text] {
+    width: 180px;
+    height: 50px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    transition: width 0.4s ease-in-out;
+  }
+  

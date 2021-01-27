@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+
+{% block body %}
+<h1>Add Note</h1>
+
+<form method="post" class="container">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+
+    <p></p>
+    <input type="submit" value="Submit" />
+</form>
+<h4>{{message}}</h4>
+
+{% endblock %}

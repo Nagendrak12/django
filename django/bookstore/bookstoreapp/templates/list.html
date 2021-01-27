@@ -1,0 +1,55 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<h2>List of Books</h2>
+<style>
+    a:hover{
+        background-color: red;
+    }
+</style>
+
+<table width="100%">
+    <tr class="colhead">
+        <th>BookId</th>
+        <th>Book Title</th>
+        <th>Amount</th>
+        <th>Number of Pages</th>
+        <th>Author Name</th>
+        <th>Publisher Name</th>
+        <th>Update/Remove</th>
+    </tr>
+
+    {% for exp in book %}
+    <tr>
+        <td style="text-align:center">{{exp.id}}</td>
+        <td>{{exp.title}}</td>
+        <td style="text-align:center">{{exp.price | floatformat:2}}</td>
+        <td style="text-align:center">{{exp.number_of_pages}}</td>
+        <td style="text-align:center">{{exp.author}}</td>
+        <td style="text-align:center">{{exp.publisher.name}}</td>
+        <td style="text-align:center">
+            <a href="/bookstore/edit/{{exp.id}}" style="  background-color: #1ec1f3; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;">Edit</a>
+            <a onclick="return confirm('Do you want to delete this entry?')" href="/bookstore/delete/{{exp.id}}" style="  background-color: #1ec1f3; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;">Delete</a>
+
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

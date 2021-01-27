@@ -1,0 +1,33 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function search() {
+        if (searchstring.value.length == 0) {
+            return alert("Put some text in there!");
+        };
+        // Ajax request
+        $.get("/bookstore/search/",                        // URL
+            { "name": $("#searchstring").val() }  // Data
+            , showResults);                       // callback
+    }
+    function showResults(results) {
+        // console.log(results)
+        entries = "";
+        for (i = 0; i < results.length; i++) {
+            entries = entries + "<li><a href='/bookstore/edit/" + results[i].id + "'>" + results[i].title + "</a>" + "</li>";
+        }
+        $("#entries").html(entries);
+    }
+
+</script>
+
+<h2>Search Book</h2>
+<input type="text" placeholder="search book" id="searchstring" value="{{searchstring}}" />
+<button onclick="search()">Search</button>
+<ul id="entries">
+
+</ul>
+{% endblock %}

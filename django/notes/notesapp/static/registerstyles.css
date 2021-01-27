@@ -1,0 +1,38 @@
+input[type=submit]{
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+input[type=submit]:active,button:active {
+	transform: scale(0.95);
+}
+
+input[type=submit]:focus,button:focus{
+	outline: none;
+}
+input[type=submit].ghost,button.ghost{
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+input[type=text],input[type=password] {
+    background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 15%;
+}
+.banner {
+  background-color:blue;
+  color:white;
+  font-family : calibri;
+  font-size:20pt;
+  font-weight:bold;
+  letter-spacing:5pt;
+}

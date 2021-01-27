@@ -1,0 +1,19 @@
+{% include "index.html" %}
+
+{% block body %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'add.css' %}"
+<form method="post">
+    <h1 style="color: white;">Series Name</h1>
+    {% csrf_token %}
+    <table>
+        {{form.as_p}}
+    </table>
+
+    <p></p>
+    <input type="submit" value="Submit" />
+</form>
+<h4 style="text-align: center;">{{message}}</h4>
+
+{% endblock %}

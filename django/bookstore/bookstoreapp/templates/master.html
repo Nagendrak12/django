@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="{% static 'styles.css'%}" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+      $(document).ready(function () {
+            $("button").click(function () {
+                $("p").text("Search Result Matched Books are:");
+            });
+        });
+    function search() {
+        if (searchstring.value.length == 0) {
+            return alert("Put some text in there!");
+        };
+        // Ajax request
+        $.get("/bookstore/search/",                        // URL
+            { "name": $("#searchstring").val() }  // Data
+            , showResults);                       // callback
+             }
+    function showResults(results) {
+        // console.log(results)
+        entries = "";
+      
+        
+        for (i = 0; i < results.length; i++) {
+            entries = entries + "<li><a href='/bookstore/edit/" + results[i].id + "'>" + results[i].title + "</a>" + "</li>";
+        }
+        $("#entries").html(entries);
+    }
+
+</script>
+
+<body>
+    <div class="banner">Book Store</div>
+    <div class="menu">
+        <ul>
+       <li> <a href="/bookstore/home/">Home</a></li>
+        &nbsp;
+    <li> <a href="/bookstore/list/">Book List</a></li>
+        &nbsp;
+    <li> <a href="/bookstore/add/">Add</a></li>
+        &nbsp;
+    <li> <a href="/bookstore/listpublisher/">Publisher list</a></li>
+    &nbsp;
+        <li style="float :right;"><a href="/bookstore/logout/">Logout</a></li>
+        <button onclick="search()" style="float: right;">Search</button>
+        <input style="float: right"; type="text" placeholder="search book" id="searchstring" value="{{searchstring}}"/>
+       
+    </ul>
+    <h1>Welcome,{{request.user.username}}</h1>
+    </div>
+   
+
+    {% block body %}
+    {% endblock %}
+    <h3><p></p></h3>
+    <ul id="entries">
+    </ul>
+</body>
+
+</html>

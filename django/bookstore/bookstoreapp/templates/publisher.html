@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<h2>List of Publishers</h2>
+
+<table width="100%">
+    <tr class="colhead">
+        <th>Publisher Id</th>
+        <th>Name</th>
+        <th>Web site</th>
+        <th>Email</th>
+    </tr>
+
+    {% for exp in publisher %}
+    <tr>
+        <td style="text-align:center">{{exp.id}}</td>
+        <td style="text-align:center">{{exp.name}}</td>
+        <td style="text-align:center"><a href="{{exp.website}}">{{exp.website}}</a></td>
+        <td style="text-align:center">{{exp.email}}</td>
+    
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
